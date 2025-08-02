@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هديل ❤️ | تحفة دباديبو الرقمية</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;700&display=swap');
+        
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            overflow: hidden;
+            font-family: 'Reem Kufi', sans-serif;
+            color: white;
+            perspective: 1000px;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: var(--opacity); transform: scale(1); }
+        }
+
+        .heart-icon {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 20px 0;
+            animation: float 6s ease-in-out infinite, heartbeat 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px #ff2d75);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotateY(0); }
+            50% { transform: translateY(-20px) rotateY(10deg); }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.05); }
+        }
+
+        .heart-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: #ff2d75;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
+        }
+
+        .hologram {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, 
+                      rgba(255, 45, 117, 0.1) 0%, 
+                      rgba(255, 45, 117, 0) 60%);
+            border-radius: 50%;
+            animation: hologramPulse 4s infinite alternate;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        @keyframes hologramPulse {
+            0% { opacity: 0.3; transform: scale(0.9); }
+            100% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        .debdobe {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: url('background/Screenshot.png') center/cover;
+            border: 3px solid #ff2d75;
+            box-shadow: 
+                0 0 30px #ff2d75,
+                0 0 60px rgba(255, 45, 117, 0.5),
+                inset 0 0 20px rgba(255, 255, 255, 0.3);
+            position: relative;
+            margin: 30px 0;
+            animation: photoGlow 3s infinite alternate;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        @keyframes photoGlow {
+            0% { box-shadow: 0 0 30px #ff2d75; transform: scale(1); }
+            100% { box-shadow: 0 0 50px #ff2d75; transform: scale(1.03); }
+        }
+
+        .debdobe:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 70px #ff2d75;
+        }
+
+        .debdobe::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,45,117,0.3) 0%, rgba(255,45,117,0) 70%);
+            animation: ripple 3s infinite ease-out;
+            z-index: -1;
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(0.9); opacity: 1; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+
+        .kurdish-poem {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.3rem;
+            line-height: 2;
+            max-width: 80%;
+            opacity: 0;
+            animation: fadeIn 2s forwards 3s;
+        }
+
+        .kurdish-line {
+            display: block;
+            margin: 10px 0;
+            position: relative;
+            color: transparent;
+            background: linear-gradient(90deg, #ff8a00, #ff2d75, #e100ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 10px rgba(255, 45, 117, 0.3);
+        }
+
+        .kurdish-line::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff2d75, #e100ff);
+            transition: width 0.5s ease;
+        }
+
+        .kurdish-line:hover::after {
+            width: 100%;
+        }
+
+        .digital-date {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 20px;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeIn 1s forwards 4s;
+            font-family: 'Courier New', monospace;
+        }
+
+        .music-note {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: floatNote 4s linear infinite;
+        }
+
+        @keyframes floatNote {
+            0% { transform: translateY(0) rotate(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .special-effect {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(circle at center, 
+                      rgba(255, 45, 117, 0.05) 0%, 
+                      rgba(22, 33, 62, 0) 70%);
+        }
+
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #ff2d75;
+            opacity: 0;
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; bottom: -10%; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-500px) rotate(360deg); opacity: 0; bottom: 100%; }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmYyZDc1IiBkPSJNNDcuNiAyNUM0Ny42IDEyLjEgNTcuNyAyIDcwIDJjMTIuNCAwIDIyLjQgMTAuMiAyMi40IDIyLjUgMCAxMi4zLTEwLjEgMjIuNS0yMi40IDIyLjUtMTIuMyAwLTIyLjQtMTAuMi0yMi40LTIyLjV6bTM4My4yIDBjMC0xMi4zIDEwLjEtMjIuNSAyMi40LTIyLjUgMTIuMyAwIDIyLjQgMTAuMiAyMi40IDIyLjUgMCAxMi4zLTEwLjEgMjIuNS0yMi40IDIyLjUtMTIuMyAwLTIyLjQtMTAuMi0yMi40LTIyLjV6bS0xOTkuNSA0My43YzEwLjktMTYuNCAyNi4zLTI4LjQgNDQuNS0yOC40IDI0LjkgMCA0NS4xIDIwLjIgNDUuMSA0NS4xIDAgMzAuMS0zMC4xIDY3LjItNjkuNSAxMTMuNC0zOS4zLTQ2LjEtNjkuNS04My4yLTY5LjUtMTEzLjQgMC0yNC45IDIwLjItNDUuMSA0NS4xLTQ1LjEgMTguMiAwIDMzLjYgMTEuOSA0NC41IDI4LjR6Ii8+PC9zdmc+"/>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="special-effect"></div>
+    <div class="floating-hearts" id="floating-hearts"></div>
+
+    <div class="heart-icon">
+        <svg viewBox="0 0 32 29.6">
+            <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+            c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+        </svg>
+        <div class="hologram"></div>
+    </div>
+
+    <div class="debdobe"></div>
+
+    <div class="kurdish-poem">
+        <span class="kurdish-line">Ez ji te hezdikim, Hedîl ❤️</span>
+        <span class="kurdish-line">Tu dil û canê min î</span>
+        <span class="kurdish-line">Ronahiya çavên min î</span>
+     
+        <span class="kurdish-line">Her dem bi te difikirim</span>
+    </div>
+
+    <div class="digital-date" id="digital-date"></div>
+
+    <script>
+        // إنشاء النجوم المتلألئة
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.width = `${Math.random() * 3 + 1}px`;
+            star.style.height = star.style.width;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+            star.style.setProperty('--opacity', Math.random() * 0.5 + 0.5);
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            starsContainer.appendChild(star);
+        }
+
+        // إنشاء قلوب طائرة
+        const heartsContainer = document.getElementById('floating-hearts');
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = `${Math.random() * 100}%`;
+            heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+            heart.style.animationDuration = `${Math.random() * 8 + 4}s`;
+            heartsContainer.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }, 300);
+
+        // عرض التاريخ بالإنجليزية
+        const dateElement = document.getElementById('digital-date');
+        function updateDate() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+            dateElement.textContent = now.toLocaleDateString('en-US', options);
+        }
+        updateDate();
+        setInterval(updateDate, 1000);
+
+        // تأثيرات النقر
+        document.addEventListener('click', (e) => {
+            // تأثير قلوب عند النقر
+            for (let i = 0; i < 5; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = `${e.clientX}px`;
+                heart.style.top = `${e.clientY}px`;
+                heart.style.animationDuration = '2s';
+                heart.style.fontSize = '25px';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 2000);
+            }
+            
+            // اهتزاز أيقونة القلب
+            const heartIcon = document.querySelector('.heart-icon');
+            heartIcon.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                heartIcon.style.transform = '';
+            }, 300);
+        });
+    </script>
+</body>
+</html>
