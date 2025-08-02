@@ -2,8 +2,8 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>هديل ❤️ | تحفة دباديبو الرقمية</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> | ❤️من دباديبو  الى هديل ❤️ | </title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;700&display=swap');
         
@@ -14,17 +14,18 @@
         }
 
         body {
-            height: 100vh;
+            min-height: 90vh;
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            overflow: hidden;
+            overflow-x: hidden;
             font-family: 'Reem Kufi', sans-serif;
             color: white;
             perspective: 1000px;
+            padding: 20px;
         }
 
         .stars {
@@ -52,16 +53,24 @@
 
         .heart-icon {
             position: relative;
-            width: 300px;
-            height: 300px;
-            margin: 20px 0;
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            aspect-ratio: 1/1;
+            margin: 10px 0;
             animation: float 6s ease-in-out infinite, heartbeat 1.5s ease-in-out infinite;
             filter: drop-shadow(0 0 20px #ff2d75);
         }
 
+        @media (max-width: 768px) {
+            .heart-icon {
+                max-width: 200px;
+            }
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0) rotateY(0); }
-            50% { transform: translateY(-20px) rotateY(10deg); }
+            50% { transform: translateY(-10px) rotateY(10deg); }
         }
 
         @keyframes heartbeat {
@@ -99,8 +108,10 @@
         }
 
         .debdobe {
-            width: 220px;
-            height: 220px;
+            width: 100%;
+            max-width: 220px;
+            height: auto;
+            aspect-ratio: 1/1;
             border-radius: 50%;
             background: url('background/Screenshot.png') center/cover;
             border: 3px solid #ff2d75;
@@ -109,10 +120,10 @@
                 0 0 60px rgba(255, 45, 117, 0.5),
                 inset 0 0 20px rgba(255, 255, 255, 0.3);
             position: relative;
-            margin: 30px 0;
+            margin: 15px 0;
             animation: photoGlow 3s infinite alternate;
             cursor: pointer;
-            transition: all 0.5s ease;
+            transition: all 0.3s ease;
         }
 
         @keyframes photoGlow {
@@ -145,17 +156,18 @@
 
         .kurdish-poem {
             text-align: center;
-            margin: 20px 0;
-            font-size: 1.3rem;
-            line-height: 2;
-            max-width: 80%;
+            margin: 15px 0;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            line-height: 1.8;
+            width: 90%;
+            max-width: 600px;
             opacity: 0;
             animation: fadeIn 2s forwards 3s;
         }
 
         .kurdish-line {
             display: block;
-            margin: 10px 0;
+            margin: 8px 0;
             position: relative;
             color: transparent;
             background: linear-gradient(90deg, #ff8a00, #ff2d75, #e100ff);
@@ -167,12 +179,12 @@
         .kurdish-line::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -3px;
             left: 0;
             width: 0;
             height: 2px;
             background: linear-gradient(90deg, #ff2d75, #e100ff);
-            transition: width 0.5s ease;
+            transition: width 0.3s ease;
         }
 
         .kurdish-line:hover::after {
@@ -180,18 +192,38 @@
         }
 
         .digital-date {
-            font-size: 1rem;
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
             color: rgba(255,255,255,0.7);
-            margin-top: 20px;
-            letter-spacing: 2px;
+            margin-top: 15px;
+            letter-spacing: 1px;
             opacity: 0;
             animation: fadeIn 1s forwards 4s;
             font-family: 'Courier New', monospace;
+            text-align: center;
+            width: 90%;
+        }
+
+        .music-player {
+            width: 90%;
+            max-width: 300px;
+            margin: 15px auto;
+            opacity: 0;
+            animation: fadeIn 1s forwards 2s;
+        }
+
+        audio {
+            width: 100%;
+            outline: none;
+        }
+
+        audio::-webkit-media-controls-panel {
+            background: #ff2d75;
+            border-radius: 50px;
         }
 
         .music-note {
             position: absolute;
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 3vw, 1.5rem);
             opacity: 0;
             animation: floatNote 4s linear infinite;
         }
@@ -228,7 +260,7 @@
 
         .floating-heart {
             position: absolute;
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 3vw, 1.5rem);
             color: #ff2d75;
             opacity: 0;
             animation: floatUp 6s linear infinite;
@@ -262,10 +294,11 @@
         <span class="kurdish-line">Ez ji te hezdikim, Hedîl ❤️</span>
         <span class="kurdish-line">Tu dil û canê min î</span>
         <span class="kurdish-line">Ronahiya çavên min î</span>
-     
+        <span class="kurdish-line">Min tu ji bîr nakim</span>
         <span class="kurdish-line">Her dem bi te difikirim</span>
     </div>
 
+    
     <div class="digital-date" id="digital-date"></div>
 
     <script>
@@ -291,7 +324,7 @@
             heart.classList.add('floating-heart');
             heart.innerHTML = '❤️';
             heart.style.left = `${Math.random() * 100}%`;
-            heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+            heart.style.fontSize = `${Math.random() * 3 + 1}rem`;
             heart.style.animationDuration = `${Math.random() * 8 + 4}s`;
             heartsContainer.appendChild(heart);
             
@@ -322,14 +355,14 @@
         // تأثيرات النقر
         document.addEventListener('click', (e) => {
             // تأثير قلوب عند النقر
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 3; i++) {
                 const heart = document.createElement('div');
                 heart.classList.add('floating-heart');
                 heart.innerHTML = '❤️';
                 heart.style.left = `${e.clientX}px`;
                 heart.style.top = `${e.clientY}px`;
                 heart.style.animationDuration = '2s';
-                heart.style.fontSize = '25px';
+                heart.style.fontSize = '1.5rem';
                 document.body.appendChild(heart);
                 
                 setTimeout(() => {
@@ -339,11 +372,13 @@
             
             // اهتزاز أيقونة القلب
             const heartIcon = document.querySelector('.heart-icon');
-            heartIcon.style.transform = 'scale(1.2)';
+            heartIcon.style.transform = 'scale(1.1)';
             setTimeout(() => {
                 heartIcon.style.transform = '';
             }, 300);
         });
+
+  
     </script>
 </body>
 </html>
