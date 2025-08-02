@@ -27,7 +27,9 @@
             perspective: 1000px;
             padding: 20px;
         }
-
+#backgroundMusic {
+            display: none;
+        }
         .stars {
             position: fixed;
             top: 0;
@@ -378,7 +380,28 @@
             }, 300);
         });
 
-  
+    document.addEventListener('DOMContentLoaded', () => {
+            const music = document.getElementById('backgroundMusic');
+            
+            // سياسات المتصفحات الحديثة تمنع التشغيل التلقائي
+            // لذلك نضيف هذه الحيلة للتفعيل عند أي تفاعل
+            const playMusic = () => {
+                music.play()
+                    .then(() => {
+                        console.log('الموسيقى تشتغل الآن');
+                        document.removeEventListener('click', playMusic);
+                    })
+                    .catch(error => {
+                        console.log('يجب التفاعل مع الصفحة أولاً:', error);
+                    });
+            };
+            
+            // محاولة التشغيل فوراً
+            playMusic();
+            
+            // وإذا فشلت نربطها بحدث النقر
+            document.addEventListener('click', playMusic);
+        });
     </script>
 </body>
 </html>
